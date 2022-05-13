@@ -21,7 +21,8 @@ class Shops:
 @dataclass
 class Store:
     shops: List[Shops] = field(default_factory=lambda: [])
-    def add(self, name, product, price):
+
+    def add(self, name: str, product: str, price: int) -> None:
         self.shops.append(
             Shops(
                 name=name,
@@ -62,8 +63,8 @@ class Store:
         table.append(line)
         return '\n'.join(table)
 
-    def select(self, name):
-        cout = 0
+    def select(self, name: str) -> None:
+        cout: int = 0
         for i, shop in enumerate(self.shops, 1):
             if (shop.name == name):
                 cout +=1
@@ -75,11 +76,10 @@ class Store:
                 )
         if(cout == 0):
             print("Такого магазина нет")
-        return cout
 
-    def load(self, filename):
+    def load(self, filename: str) -> None:
         with open(filename, 'r', encoding='utf8') as fin:
-            xml = fin.read()
+            xml: str = fin.read()
             parser = ET.XMLParser(encoding="utf8")
             tree = ET.fromstring(xml, parser=parser)
             self.shops = []
@@ -102,7 +102,7 @@ class Store:
                             )
                         )
 
-    def save(self, filename):
+    def save(self, filename) -> None:
         root = ET.Element('shops')
         for Shops in self.shops:
             shops_element = ET.Element('Shops')
