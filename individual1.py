@@ -32,7 +32,7 @@ class Store:
         )
         self.shops.sort(key=lambda Shops: Shops.name)
 
-    def __str__(self):
+    def __str__(self) -> str:
         # Заголовок таблицы.
         table = []
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
